@@ -10,7 +10,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface inventoryDAO {
+public interface InventoryDAO {
 
     @Select("select * from inventory where wid=#{wid}")
     public List<inventory> getALL(int wid);  //查询仓库内所有库存

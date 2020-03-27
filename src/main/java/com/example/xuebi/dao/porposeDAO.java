@@ -13,7 +13,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface porposeDAO {
+public interface PorposeDAO {
 
     @Insert("insert into porpose(pcontent, cid)values(#{pcontent}, #{cid})")
     public int addPorpose(porpose p); //发表评论

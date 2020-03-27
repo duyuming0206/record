@@ -12,7 +12,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface materialDAO {
+public interface MaterialDAO {
 
     @Insert("insert into material(mname, sid, cid)values(#{mname}, #{sid}, #{cid})")
     public int addMaterial(material m);  //添加物料

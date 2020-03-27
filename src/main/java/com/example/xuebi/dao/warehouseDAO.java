@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface warehouseDAO {
+public interface WarehouseDAO {
 
     @Insert("insert into warehouse(wname, cid)values(#{wname}, #{cid})")
     public int addWarehouse(warehouse w);  //添加仓库

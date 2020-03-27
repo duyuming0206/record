@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Mapper
 @Component
-public interface customerDAO {
+public interface CustomerDAO {
 
     //注册
     @Insert("insert into customer(cname, cpassword)VALUES(#{cname}, #{cpassword})")

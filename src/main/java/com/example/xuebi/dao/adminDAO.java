@@ -9,7 +9,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface adminDAO {
+public interface AdminDAO {
 
     @Select("select * from admin where aname = #{aname}")
     public admin getByName(String aname);

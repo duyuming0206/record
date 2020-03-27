@@ -13,7 +13,7 @@ import java.util.List;
 // 物料分类DAO
 @Mapper
 @Component
-public interface sortDAO {
+public interface SortDAO {
 
     @Insert("insert into sort(sname)values(#{sname})")
     public int addSort(sort s);

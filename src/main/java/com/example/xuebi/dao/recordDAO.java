@@ -11,7 +11,7 @@ import java.util.List;
 
 @Mapper
 @Component
-public interface recordDAO {
+public interface RecordDAO {
 
     @Insert("insert into record(mname, rnum, sid, wid, creatdate)values(#{mname}, #{rnum}, #{sid}, #{wid}, #{creatdate})")
     public int addRecord(record r); //添加出入库记录
