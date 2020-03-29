@@ -13,7 +13,7 @@ public interface CustomerDAO {
 
     //注册
     @Insert("insert into customer(cname, cpassword)VALUES(#{cname}, #{cpassword})")
-    public void addCustomer(customer c);
+    public int addCustomer(customer c);
 
 
     //根据用户名查询 用于登录

@@ -7,6 +7,15 @@ public class inventory {
     private int inum;
     private int wid;
     private int sid;
+    private int changeNum;
+
+    public int getChangeNum() {
+        return changeNum;
+    }
+
+    public void setChangeNum(int changeNum) {
+        this.changeNum = changeNum;
+    }
 
     public int getIid() {
         return iid;

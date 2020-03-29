@@ -26,4 +26,6 @@ public interface InventoryDAO {
 
     @Insert("insert into inventory(mname, inum, wid, sid)values(#{mname}, #{inum}, #{wid}, #{sid})")
     public void addInventroy(inventory i); //添加库存
+
+
 }

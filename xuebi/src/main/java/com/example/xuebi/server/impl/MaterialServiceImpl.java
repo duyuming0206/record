@@ -21,8 +21,8 @@ public class MaterialServiceImpl implements MaterialService {
     }
 
     @Override
-    public List<material> getAll() {
-        return materialDAO.getAll();
+    public List<material> getAll(int cid) {
+        return materialDAO.getAll(cid);
     }
 
     @Override

@@ -17,8 +17,8 @@ public interface MaterialDAO {
     @Insert("insert into material(mname, sid, cid)values(#{mname}, #{sid}, #{cid})")
     public int addMaterial(material m);  //添加物料
 
-    @Select("select * from material")
-    public List<material> getAll(); //获得所有物料
+    @Select("select * from material where cid=#{cid}")
+    public List<material> getAll(int cid); //获得所有物料
 
     @Delete("delete from material where mid=#{mid}")
     public int deleteMaterial(int mid); //删除物料
