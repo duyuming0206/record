@@ -9,12 +9,13 @@ import com.example.xuebi.server.WarehouseService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
-@Controller
+@RestController
 public class CustomerContorller {
 
     @Autowired
@@ -54,14 +55,18 @@ public class CustomerContorller {
 
     @RequestMapping("regist")
     public String regist(customer c){
+        String isSuccess = "fail";
         customer c1 = customerService.getByName(c.getCname());
-        if (c1.getCname().equals(c.getCname())){
-            return "fail";
+        if (c1 != null){
+            return isSuccess;
         }
-        int isSuccess = customerService.addCustomer(c);
-        if (isSuccess > 0){
-            return "success";
+        int isSucc = customerService.addCustomer(c);
+        if (isSucc == 1){
+            isSuccess = "success";
+            return isSuccess;
         }
-        return "fail";
+        return isSuccess;
     }
+
+
 }
