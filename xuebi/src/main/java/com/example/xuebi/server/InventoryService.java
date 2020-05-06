@@ -16,4 +16,6 @@ public interface InventoryService {
     public int deleteInventory(int iid); //删除库存
 
     public void addInventroy(inventory i); //添加库存
+
+    public inventory getOneById(int iid);
 }

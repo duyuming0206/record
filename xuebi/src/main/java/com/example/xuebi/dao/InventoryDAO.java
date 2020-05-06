@@ -27,5 +27,8 @@ public interface InventoryDAO {
     @Insert("insert into inventory(mname, inum, wid, sid)values(#{mname}, #{inum}, #{wid}, #{sid})")
     public void addInventroy(inventory i); //添加库存
 
+    @Select("select * from inventory where iid=#{iid}")
+    public inventory getOneById(int iid);
+
 
 }

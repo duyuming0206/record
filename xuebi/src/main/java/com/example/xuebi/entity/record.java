@@ -3,19 +3,19 @@ package com.example.xuebi.entity;
 import java.util.Date;
 
 public class record {
-    private int cid;
+    private int rid;
     private String mname;
     private int rnum;
     private int sid;
     private int wid;
     private Date creatdate;
 
-    public int getCid() {
-        return cid;
+    public int getRid() {
+        return rid;
     }
 
-    public void setCid(int cid) {
-        this.cid = cid;
+    public void setRid(int rid) {
+        this.rid = rid;
     }
 
     public String getMname() {

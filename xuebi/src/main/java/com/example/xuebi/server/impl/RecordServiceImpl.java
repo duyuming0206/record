@@ -25,4 +25,14 @@ public class RecordServiceImpl implements RecordService {
     public List<record> getByWid(int wid) {
         return recordDAO.getByWid(wid);
     }
+
+    @Override
+    public List<record> getOut(int wid, String mname) {
+        return recordDAO.getOut(wid,mname);
+    }
+
+    @Override
+    public List<record> getIn(int wid,String mname) {
+        return recordDAO.getIn(wid,mname);
+    }
 }

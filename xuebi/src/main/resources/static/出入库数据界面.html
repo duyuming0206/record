@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- 上述3个meta标签*必须*放在最前面，任何其他内容都*必须*跟随其后！ -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>出入库数据界面</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="dashboard.css" rel="stylesheet">
+    <link href="signin.css" rel="stylesheet">
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.11"></script>
+      <script src="https://cdn.staticfile.org/vue-resource/1.5.1/vue-resource.min.js"></script>
+      <script>
+          var vm;
+          window.onload = function(){
+              vm = new Vue({
+                  el:'#churukushuju',
+                  data:{
+                      pageSize:2,
+                      currentPage:0,
+                      lists:[{rid:'',mname:'',rnum:'',sid:'',wid:'',creatdate:''}] //存放该仓库的出入库记录
+                  },
+                  computed:{
+                      dataShow: function(){
+                          let start = this.currentPage*this.pageSize;
+                          let end = Math.min((this.currentPage+1)*this.pageSize, this.lists.length);
+                          return this.lists.slice(start, end);
+                      },
+                      pageNum: function(){
+                          return Math.ceil(this.lists.length / this.pageSize) || 1 ;
+                      }
+                  },
+                  methods: {
+                      getrecord:function () {
+                          this.$http.post('getAllRecord',null,{emulateJSON:true}).then(function(res){
+                              this.lists=res.body;
+                          },function(){
+                              console.log('请求失败');
+                          });
+                      },
+                      nextPage: function(){
+                          var vm = this;
+                          if (vm.currentPage == vm.pageNum - 1) return;
+                          vm.currentPage++;
+
+                      },
+                      prePage: function(){
+                          var vm = this;
+                          if (vm.currentPage == 0) return;
+                          vm.currentPage--;
+
+                      },
+                      toPage: function(page){
+                          var vm = this;
+                          vm.currentPage = page
+                      }
+                  }
+              });
+              vm.getrecord();
+          }
+      </script>
+
+  </head>
+
+  <body>
+
+    <nav class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">雪碧进销存系统</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/修改密码.html">修改密码</a></li>
+            <li><a href="/login.html">退出登录</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+          <h2 class="sub-header">出入库记录</h2>
+          <div class="table-responsive" id="churukushuju">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>操作编号</th>
+                  <th>物料名称</th>
+                  <th>出入库数量</th>
+                  <th>操作时间</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in dataShow" :class="{ 'alt': index%2==1 }">
+                  <td>{{item.rid}}</td>
+                  <td>{{item.mname}}</td>
+                  <td>{{item.rnum}}</td>
+                  <td>{{item.creatdate}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <nav aria-label="Page navigation">
+              <ul class="pagination">
+                <li>
+                  <a href="#" aria-label="Previous" @click="prePage">
+                    <span aria-hidden="true">&laquo;</span>
+                  </a>
+                </li>
+                <li v-for="(item, index) in pageNum">
+                  <a href="#" @click="toPage(index)" :class="{active: currentPage==index}">{{ index+1 }}</a>
+                </li>
+                <li>
+                  <a href="#" aria-label="Next" @click="nextPage">
+                    <span aria-hidden="true">&raquo;</span>
+                  </a>
+                </li>
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <!-- Just to make our placeholder images work. Don't actually copy the next line! -->
+    <script src="../../assets/js/vendor/holder.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+  </body>
+</html>

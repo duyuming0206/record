@@ -2,7 +2,7 @@ package com.example.xuebi.entity;
 
 public class sort {
     private int sid;
-    private int sname;
+    private String sname;
 
     public int getSid() {
         return sid;
@@ -12,11 +12,11 @@ public class sort {
         this.sid = sid;
     }
 
-    public int getSname() {
+    public String getSname() {
         return sname;
     }
 
-    public void setSname(int sname) {
+    public void setSname(String sname) {
         this.sname = sname;
     }
 }

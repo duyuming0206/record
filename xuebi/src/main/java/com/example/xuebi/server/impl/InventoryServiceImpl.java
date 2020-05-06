@@ -39,4 +39,11 @@ public class InventoryServiceImpl implements InventoryService {
     public void addInventroy(inventory i) {
         inventoryDAO.addInventroy(i);
     }
+
+    @Override
+    public inventory getOneById(int iid) {
+        return inventoryDAO.getOneById(iid);
+    }
+
+
 }
